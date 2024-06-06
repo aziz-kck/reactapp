@@ -54,7 +54,7 @@ export function register(config) {
   }
 }
 
-function registerValidSW(swUrl, config) {
+/* function registerValidSW(swUrl, config) {
   navigator.serviceWorker
     .register(swUrl)
     .then(registration => {
@@ -96,7 +96,50 @@ function registerValidSW(swUrl, config) {
     .catch(error => {
       console.error('Error during service worker registration:', error);
     });
+} */
+
+function handleStateChange(installingWorker, registration, config) {
+  if (installingWorker.state === 'installed') {
+    if (navigator.serviceWorker.controller) {
+      console.log(
+        'New content is available and will be used when all ' +
+          'tabs for this page are closed. See https://bit.ly/CRA-PWA.'
+      );
+      // Execute callback
+      if (config && config.onUpdate) {
+        config.onUpdate(registration);
+      }
+    } else {
+      console.log('Content is cached for offline use.');
+      // Execute callback
+      if (config && config.onSuccess) {
+        config.onSuccess(registration);
+      }
+    }
+  }
 }
+
+function handleUpdateFound(registration, config) {
+  const installingWorker = registration.installing;
+  if (installingWorker == null) {
+    return;
+  }
+  installingWorker.onstatechange = () => handleStateChange(installingWorker, registration, config);
+}
+
+function registerValidSW(swUrl, config) {
+  navigator.serviceWorker
+    .register(swUrl)
+    .then(registration => {
+      registration.onupdatefound = () => handleUpdateFound(registration, config);
+    })
+    .catch(error => {
+      console.error('Error during service worker registration:', error);
+    });
+}
+
+
+
 
 function checkValidServiceWorker(swUrl, config) {
   // Check if the service worker can be found. If it can't reload the page.
