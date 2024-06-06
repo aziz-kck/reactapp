@@ -1,31 +1,31 @@
-import React from 'react'
-import { MdClose } from 'react-icons/md'
-import { FiCheckCircle } from 'react-icons/fi'
+import React from 'react';
+import { MdClose } from 'react-icons/md';
+import { FiCheckCircle, FiCircle } from 'react-icons/fi';
 
 const Todo = ({ todo, index, completeTodo, removeTodo }) => {
-  let style = {
+  const style = {
     textDecoration: todo.isCompleted ? 'line-through' : ''
-  }
+  };
+
   const handleComplete = () => {
-    completeTodo(index)
-  }
+    completeTodo(index);
+  };
 
   const handleRemove = () => {
-    removeTodo(index)
-  }
+    removeTodo(index);
+  };
 
   return (
     <div className='todo' style={style}>
       <div>
         <span onClick={handleComplete} className='btn-check'>
-          {todo.isCompleted ? <FiCheckCircle /> : <FiCheckCircle />}
+          {todo.isCompleted ? <FiCheckCircle /> : <FiCircle />}
         </span>
         {todo.text}
       </div>
-
-      <MdClose onClick={handleRemove} className='btn-close'  id={`remove-${index}`} />
+      <MdClose onClick={handleRemove} className='btn-close' id={`remove-${index}`} />
     </div>
-  )
-}
+  );
+};
 
-export default Todo
+export default Todo;
