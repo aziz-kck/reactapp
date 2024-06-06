@@ -23,7 +23,7 @@ const Todo = ({ todo, index, completeTodo, removeTodo }) => {
         {todo.text}
       </div>
 
-      <MdClose onClick={handleRemove} className='btn-close' />
+      <MdClose onClick={handleRemove} className='btn-close'  id={`remove-${index}`} />
     </div>
   )
 }
