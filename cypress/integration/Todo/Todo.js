@@ -61,18 +61,12 @@
 }) 
 */
 describe('Cypress Test on Todo Project', function() {
-  before(() => {
-    cy.visit('/');
-    cy.wait(1000); // Adjust wait time as necessary to ensure application is fully loaded
-  });
-
   it('visits My Todo App', function() {
-    // Ensure the application is loaded and visible
-    cy.get('.app-container').should('be.visible');
+    cy.visit('/');
   });
 
   it('should focus on the input', () => {
-    cy.get('.input').should('be.focused');
+    cy.focused().should('have.class', 'input');
   });
 
   it('initially has 3 todos', () => {
@@ -99,12 +93,10 @@ describe('Cypress Test on Todo Project', function() {
     const txt = 'Learn about Cypress';
     cy.get('.input')
       .type(txt)
-      .type('{enter}');
-    
-    // Wait for the new todo to be added (adjust wait time as necessary)
-    cy.wait(1000);
-    
-    cy.get('.todo').should('have.length', 4);
+      .type('{enter}')
+      .get('.todo')
+      .should('have.length', 4)
+      .wait(1000); // Wait for new todo to be added
   });
 
   it('checks first todo', () => {
@@ -112,13 +104,11 @@ describe('Cypress Test on Todo Project', function() {
       .first()
       .click();
 
-    // Ensure the first todo is checked (adjust wait time as necessary)
-    cy.wait(500);
-    
     cy.get('.todo')
       .first()
       .should('have.css', 'text-decoration')
-      .and('match', /line-through/);
+      .and('match', /line-through/)
+      .wait(500); // Wait for check action to complete
   });
 
   it('removes last 2 todos', () => {
@@ -129,12 +119,12 @@ describe('Cypress Test on Todo Project', function() {
     cy.get('.btn-close')
       .last()
       .click();
-    
-    // Wait for todos to be removed (adjust wait time as necessary)
-    cy.wait(1000);
-    
-    cy.get('.todo').should('have.length', 2);
+
+    cy.get('.todo').should('have.length', 2)
+      .wait(1000); // Wait for todos to be removed
   });
 });
+
+
 
   
