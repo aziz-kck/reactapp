@@ -14,7 +14,9 @@
     "cypress": "cypress open",
     "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "performance-test": "node scripts/performance-test.js",
+    "lint": "eslint 'src/**/*.{js,jsx}'"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -22,6 +24,7 @@
     "@testing-library/user-event": "^7.1.2",
     "express": "^4.19.2",
     "express-prom-bundle": "^7.0.0",
+    "performance-now": "^2.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-icons": "^3.9.0",
