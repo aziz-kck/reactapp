@@ -3,7 +3,6 @@
 const fs = require('fs');
 
 // Chemin vers le fichier de rapport de couverture généré par Jest
-const coveragePath = './coverage/coverage-summary.json';
 
 // Lire le fichier de rapport de couverture
 const coverageData = JSON.parse(fs.readFileSync(coveragePath, 'utf8'));
