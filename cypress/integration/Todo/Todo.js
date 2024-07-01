@@ -59,4 +59,3 @@ describe('Cypress Test on Todo Project', function() {
     cy.get('.todo').should('have.length', 2)
   })
 }) 
-
