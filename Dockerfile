@@ -16,4 +16,3 @@ RUN yarn global add serve
 CMD ["serve", "-s", "build", "-l", "3001"]
 # Expose port 3001 to the outside world
 EXPOSE 3001
-#gggggggggggggggg
