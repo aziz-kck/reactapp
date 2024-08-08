@@ -1,6 +1,7 @@
 describe('Cypress Test on Todo Project', function() {
   it('visits My Todo App', function() {
     cy.visit('/')
+    cy.wait(1000)
   })
 
   it('should focus to the input', () => {
